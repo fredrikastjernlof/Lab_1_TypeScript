@@ -51,25 +51,35 @@ form.addEventListener("submit", (e) => {
     syllabus: syllabusInput.value
   };
 
+  //Kontrollerar om någon kurs redan har samma kod och stoppar tillägg om kursen redan finns i listan
+  const exists = courses.some(
+    (course) => course.code === newCourse.code
+  );
+
+  if (exists) {
+    alert("Kursen finns redan i listan");
+    return;
+  }
+
   courses.push(newCourse);
   renderCourses();
-  console.log(newCourse);
+
 });
 
- courseSelect.addEventListener("change", () => {
-    fillFormWithCourse(courseSelect.value);
-  });
+courseSelect.addEventListener("change", () => {
+  fillFormWithCourse(courseSelect.value);
+});
 
 function populateCourseSelect(): void {
-  availableCourses.forEach((course) =>{
-    const option =document.createElement("option");
+  availableCourses.forEach((course) => {
+    const option = document.createElement("option");
     option.value = course.code;
     option.textContent = `${course.code} - ${course.name}`;
     courseSelect.appendChild(option);
   });
 }
 
-function fillFormWithCourse (code: string): void {
+function fillFormWithCourse(code: string): void {
   const selectedCourse = availableCourses.find(
     (course) => course.code === code
   );
@@ -79,7 +89,7 @@ function fillFormWithCourse (code: string): void {
   codeInput.value = selectedCourse.code;
   nameInput.value = selectedCourse.name;
   progressionSelect.value = selectedCourse.progression;
-  syllabusInput.value = selectedCourse.syllabus;  
+  syllabusInput.value = selectedCourse.syllabus;
 }
 
 function renderCourses(): void {
