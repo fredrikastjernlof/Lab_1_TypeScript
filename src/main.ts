@@ -12,6 +12,7 @@ interface CourseInfo {
   syllabus: string;
 }
 
+// Struktur för rådata från JSON-filen
 interface RawCourse {
   code: string;
   coursename: string;
@@ -19,6 +20,7 @@ interface RawCourse {
   syllabus: string;
 }
 
+// Konverterar JSON-data till korrekt CourseInfo-format
 const availableCourses: CourseInfo[] = (data as RawCourse[]).map((course) => ({
   code: course.code.toUpperCase(),
   name: course.coursename,
@@ -26,11 +28,13 @@ const availableCourses: CourseInfo[] = (data as RawCourse[]).map((course) => ({
   syllabus: course.syllabus
 }));
 
-// En kurs får bara innehålla CourseInfo-objekt. 
+// Lista med kurser som användaren lagt till
 const courses: CourseInfo[] = [];
 
+// Nyckel för localStorage
 const storageKey: string = "courses";
 
+// Hämtar alla DOM-element
 const form = document.getElementById("courseForm") as HTMLFormElement;
 const courseSelect = document.getElementById("courseSelect") as HTMLSelectElement;
 const codeInput = document.getElementById("code") as HTMLInputElement;
@@ -41,9 +45,11 @@ const courseList = document.getElementById("courseList") as HTMLUListElement;
 const clearCoursesBtn = document.getElementById("clearCoursesBtn") as HTMLButtonElement;
 const sortCoursesSelect = document.getElementById("sortCourses") as HTMLSelectElement;
 
+// När formuläret skickas
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  // Skapar ett nytt kursobjekt från formuläret
   const newCourse: CourseInfo = {
     code: codeInput.value.toUpperCase(),
     name: nameInput.value,
@@ -61,30 +67,35 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
+  // Lägg till kurs, spara och rendera
   courses.push(newCourse);
   saveCoursesToStorage();
   renderCourses();
   resetForm();
-
 });
 
+// Autofyll formulär när kurs väljs från dropdown
 courseSelect.addEventListener("change", () => {
   fillFormWithCourse(courseSelect.value);
 });
 
+// Om användaren ändrar manuellt så nollställs dropdown:en
 codeInput.addEventListener("input", resetCourseSelect);
 nameInput.addEventListener("input", resetCourseSelect);
 progressionSelect.addEventListener("change", resetCourseSelect);
 syllabusInput.addEventListener("input", resetCourseSelect);
 
+// Sortering av kurser
 sortCoursesSelect.addEventListener("change", () => {
   renderCourses();
 });
 
+// Ta bort alla kurser
 clearCoursesBtn.addEventListener("click", () => {
   clearCourses();
 });
 
+// Fyller dropdown med kurser från JSON
 function populateCourseSelect(): void {
   availableCourses.forEach((course) => {
     const option = document.createElement("option");
@@ -94,6 +105,7 @@ function populateCourseSelect(): void {
   });
 }
 
+// Fyller formuläret med vald kurs
 function fillFormWithCourse(code: string): void {
   const selectedCourse = availableCourses.find(
     (course) => course.code === code
@@ -107,15 +119,18 @@ function fillFormWithCourse(code: string): void {
   syllabusInput.value = selectedCourse.syllabus;
 }
 
+// Återställer formuläret
 function resetForm(): void {
   form.reset();
   courseSelect.value = "";
 }
 
+// Nollställer dropdown om användaren skriver manuellt
 function resetCourseSelect(): void {
   courseSelect.value = "";
 }
 
+// Returnerar sorterad lista utan att ändra originalarrayen
 function getSortedCourses(): CourseInfo[] {
   const sortedCourses = [...courses];
 
@@ -130,12 +145,14 @@ function getSortedCourses(): CourseInfo[] {
   return sortedCourses;
 }
 
+// Renderar kurslistan i DOM
 function renderCourses(): void {
   courseList.innerHTML = "";
 
   getSortedCourses().forEach((course) => {
     const li = document.createElement("li");
 
+    // Skapar delete-knapp för varje kurs
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Ta bort";
 
@@ -154,6 +171,7 @@ function renderCourses(): void {
   });
 }
 
+// Tar bort en kurs
 function removeCourse(code: string): void {
   const index = courses.findIndex((course) => course.code === code);
 
@@ -164,16 +182,19 @@ function removeCourse(code: string): void {
   }
 }
 
+// Tar bort alla kurser
 function clearCourses(): void {
   courses.length = 0;
   saveCoursesToStorage();
   renderCourses();
 }
 
+// Sparar kurser i localStorage
 function saveCoursesToStorage(): void {
   localStorage.setItem(storageKey, JSON.stringify(courses));
 }
 
+// Hämtar kurser från localStorage
 function loadCoursesFromStorage(): void {
   const storedCourses = localStorage.getItem(storageKey);
 
@@ -185,6 +206,7 @@ function loadCoursesFromStorage(): void {
   courses.push(...parsedCourses);
 }
 
+// Initiering när sidan laddas
 populateCourseSelect();
 loadCoursesFromStorage();
 renderCourses();
