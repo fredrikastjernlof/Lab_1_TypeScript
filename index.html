@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kurshantering</title>
 </head>
+
 <body>
   <form id="courseForm">
-  <label for="courseSelect">Välj kurs från lista (valfritt)</label>
-  <select id="courseSelect">
-    <option value="">Välj en kurs</option>
-  </select>
+    <label for="courseSelect">Välj kurs från lista (valfritt)</label>
+    <select id="courseSelect">
+      <option value="">Välj en kurs</option>
+    </select>
 
-  <label for="code">Kurskod:</label>
-  <input type="text" id="code" placeholder="Kurskod" required />
-  <label for="name">Kursnamn:</label>
-  <input type="text" id="name" placeholder="Kursnamn" required />
+    <label for="code">Kurskod:</label>
+    <input type="text" id="code" placeholder="Kurskod" required />
+    <label for="name">Kursnamn:</label>
+    <input type="text" id="name" placeholder="Kursnamn" required />
 
-  <label for="progression">Progression</label>
-  <select id="progression" required>
-    <option value="">Välj progression</option>
-    <option value="A">A</option>
-    <option value="B">B</option>
-    <option value="C">C</option>
-  </select>
+    <label for="progression">Progression</label>
+    <select id="progression" required>
+      <option value="">Välj progression</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
 
-  <label for="syllabus">Länk till kursbeskrivning:</label>
-  <input type="url" id="syllabus" placeholder="Kurs URL" required />
+    <label for="syllabus">Länk till kursbeskrivning:</label>
+    <input type="url" id="syllabus" placeholder="Kurs URL" required />
 
-  <button type="submit">Lägg till kurs</button>
-</form>
+    <button type="submit">Lägg till kurs</button>
+  </form>
 
-    
+  <h2>Tillagda kurser</h2>
+  <ul id="courseList"></ul>
+
+
   <script type="module" src="/src/main.ts"></script>
 </body>
+
 </html>

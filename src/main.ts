@@ -56,6 +56,10 @@ form.addEventListener("submit", (e) => {
   console.log(newCourse);
 });
 
+ courseSelect.addEventListener("change", () => {
+    fillFormWithCourse(courseSelect.value);
+  });
+
 function populateCourseSelect(): void {
   availableCourses.forEach((course) =>{
     const option =document.createElement("option");
@@ -63,6 +67,19 @@ function populateCourseSelect(): void {
     option.textContent = `${course.code} - ${course.name}`;
     courseSelect.appendChild(option);
   });
+}
+
+function fillFormWithCourse (code: string): void {
+  const selectedCourse = availableCourses.find(
+    (course) => course.code === code
+  );
+
+  if (!selectedCourse) return;
+
+  codeInput.value = selectedCourse.code;
+  nameInput.value = selectedCourse.name;
+  progressionSelect.value = selectedCourse.progression;
+  syllabusInput.value = selectedCourse.syllabus;  
 }
 
 function renderCourses(): void {
