@@ -18,3 +18,22 @@ interface CourseInfo{
 const courses: CourseInfo[] = [];
 
 console.log(courses);
+
+const form = document.getElementById("courseForm") as HTMLFormElement;
+const codeInput = document.getElementById("code") as HTMLInputElement;
+const nameInput = document.getElementById("name") as HTMLInputElement;
+const progressionSelect = document.getElementById("progression") as HTMLSelectElement;
+const syllabusInput = document.getElementById("syllabus") as HTMLInputElement;
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newCourse: CourseInfo = {
+    code: codeInput.value.toUpperCase(),
+    name: nameInput.value,
+    progression: progressionSelect.value as Progression,
+    syllabus: syllabusInput.value
+  };
+
+  console.log(newCourse);
+})
