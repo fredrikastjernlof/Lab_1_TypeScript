@@ -61,6 +61,7 @@ form.addEventListener("submit", (e) => {
   }
 
   courses.push(newCourse);
+  saveCoursesToStorage();
   renderCourses();
 
 });
@@ -137,5 +138,4 @@ function saveCoursesToStorage(): void {
   localStorage.setItem(storageKey, JSON.stringify(courses));
 }
 
-saveCoursesToStorage();
 populateCourseSelect();
