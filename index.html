@@ -6,24 +6,30 @@
   <title>Kurshantering</title>
 </head>
 <body>
-  <h1>Kurshantering</h1>
   <form id="courseForm">
-      <input type="text" id="code" placeholder="Kurskod" required />
-      <input type="text" id="name" placeholder="Kursnamn" required />
+  <label for="courseSelect">Välj kurs från lista (valfritt)</label>
+  <select id="courseSelect">
+    <option value="">Välj en kurs</option>
+  </select>
 
-      <select id="progression" required>
-        <option value="">Välj progression</option>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-      </select>
+  <label for="code">Kurskod:</label>
+  <input type="text" id="code" placeholder="Kurskod" required />
+  <label for="name">Kursnamn:</label>
+  <input type="text" id="name" placeholder="Kursnamn" required />
 
-      <input type="url" id="syllabus" placeholder="Kurs URL" required />
+  <label for="progression">Progression</label>
+  <select id="progression" required>
+    <option value="">Välj progression</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+  </select>
 
-      <button type="submit">Lägg till kurs</button>
-    </form>
+  <label for="syllabus">Länk till kursbeskrivning:</label>
+  <input type="url" id="syllabus" placeholder="Kurs URL" required />
 
-    <ul id="courseList"></ul>
+  <button type="submit">Lägg till kurs</button>
+</form>
 
     
   <script type="module" src="/src/main.ts"></script>
