@@ -71,6 +71,11 @@ courseSelect.addEventListener("change", () => {
   fillFormWithCourse(courseSelect.value);
 });
 
+codeInput.addEventListener("input", resetCourseSelect);
+nameInput.addEventListener("input", resetCourseSelect);
+progressionSelect.addEventListener("change", resetCourseSelect);
+syllabusInput.addEventListener("input", resetCourseSelect);
+
 clearCoursesBtn.addEventListener("click", () => {
   clearCourses();
 });
@@ -99,6 +104,10 @@ function fillFormWithCourse(code: string): void {
 
 function resetForm(): void {
   form.reset();
+  courseSelect.value = "";
+}
+
+function resetCourseSelect(): void {
   courseSelect.value = "";
 }
 
