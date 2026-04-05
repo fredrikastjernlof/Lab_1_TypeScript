@@ -1,8 +1,6 @@
 import "./style.scss";
 import data from "./data/courses.json";
 
-console.log(data);
-
 // En kurs har en kod, ett namn, en progression och en kursplan. Progressionen kan vara A, B eller C.
 type Progression = "A" | "B" | "C";
 
@@ -31,7 +29,7 @@ const availableCourses: CourseInfo[] = (data as RawCourse[]).map((course) => ({
 // En kurs får bara innehålla CourseInfo-objekt. 
 const courses: CourseInfo[] = [];
 
-console.log(courses);
+const storageKey: string = "courses";
 
 const form = document.getElementById("courseForm") as HTMLFormElement;
 const courseSelect = document.getElementById("courseSelect") as HTMLSelectElement;
@@ -135,4 +133,9 @@ function clearCourses(): void {
   renderCourses();
 }
 
+function saveCoursesToStorage(): void {
+  localStorage.setItem(storageKey, JSON.stringify(courses));
+}
+
+saveCoursesToStorage();
 populateCourseSelect();
