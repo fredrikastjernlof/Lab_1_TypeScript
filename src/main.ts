@@ -93,20 +93,36 @@ function fillFormWithCourse(code: string): void {
 }
 
 function renderCourses(): void {
-
-  //Rensa tidigare lista
   courseList.innerHTML = "";
 
   courses.forEach((course) => {
     const li = document.createElement("li");
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Ta bort";
+
+    deleteBtn.addEventListener("click", () => {
+      removeCourse(course.code);
+    });
+
     li.innerHTML = `
-    <strong>${course.code}</strong> - ${course.name} (${course.progression})
-    <br>
-    <a href="${course.syllabus}" target="_blank"> Kursplan</a>
+      <strong>${course.code}</strong> - ${course.name} (${course.progression})
+      <br>
+      <a href="${course.syllabus}" target="_blank">Kursplan</a>
     `;
 
+    li.appendChild(deleteBtn);
     courseList.appendChild(li);
   });
+}
+
+function removeCourse(code: string): void {
+  const index = courses.findIndex((course) => course.code === code);
+
+  if (index !== -1) {
+    courses.splice(index, 1);
+    renderCourses();
+  }
 }
 
 populateCourseSelect();
