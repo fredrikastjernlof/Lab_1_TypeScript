@@ -39,6 +39,7 @@ const progressionSelect = document.getElementById("progression") as HTMLSelectEl
 const syllabusInput = document.getElementById("syllabus") as HTMLInputElement;
 const courseList = document.getElementById("courseList") as HTMLUListElement;
 const clearCoursesBtn = document.getElementById("clearCoursesBtn") as HTMLButtonElement;
+const sortCoursesSelect = document.getElementById("sortCourses") as HTMLSelectElement;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -76,6 +77,10 @@ nameInput.addEventListener("input", resetCourseSelect);
 progressionSelect.addEventListener("change", resetCourseSelect);
 syllabusInput.addEventListener("input", resetCourseSelect);
 
+sortCoursesSelect.addEventListener("change", () => {
+  renderCourses();
+});
+
 clearCoursesBtn.addEventListener("click", () => {
   clearCourses();
 });
@@ -111,10 +116,24 @@ function resetCourseSelect(): void {
   courseSelect.value = "";
 }
 
+function getSortedCourses(): CourseInfo[] {
+  const sortedCourses = [...courses];
+
+  if (sortCoursesSelect.value === "name-asc") {
+    sortedCourses.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  if (sortCoursesSelect.value === "name-desc") {
+    sortedCourses.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  return sortedCourses;
+}
+
 function renderCourses(): void {
   courseList.innerHTML = "";
 
-  courses.forEach((course) => {
+  getSortedCourses().forEach((course) => {
     const li = document.createElement("li");
 
     const deleteBtn = document.createElement("button");
