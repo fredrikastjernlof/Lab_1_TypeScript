@@ -52,7 +52,9 @@ Dessa används för att snabbt kunna fylla formuläret.
 
 ## Publicering 🌐
 
-Läggs till efter publicering
+Uppgiften är publicerad via netlify:
+
+[Öppna webbplatsen](https://lab1typescript.netlify.app/)
 
 ---
 
