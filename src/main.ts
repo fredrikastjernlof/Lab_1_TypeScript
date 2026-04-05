@@ -1,4 +1,7 @@
 import "./style.scss";
+import data from "./data/courses.json";
+
+console.log(data);
 
 // En kurs har en kod, ett namn, en progression och en kursplan. Progressionen kan vara A, B eller C.
 type Progression = "A" | "B" | "C" ;
