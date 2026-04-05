@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    background: #f5f7fa;
+    color: #222;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: black;
+    color: white;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+
+form {
+    font-size: large;
+    background: white;
+    padding: 1.5rem;
+    border-top: 10px solid #0b4189;
+    border-radius: 10px;
+    display: grid;
+    gap: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+input,
+select {
+    border-radius: 4px;
+    padding: 0.6rem;
+    font: inherit;
+    border: 1px solid #636262;
+
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #0b4189;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2),
+            0 0 0 2px rgba(11, 65, 137, 0.2);
+    }
+}
+
+button {
+    padding: 0.6rem;
+    font: inherit;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    background: #0b4189;
+    color: white;
+
+    &:hover {
+        background: #1a5fc1;
+    }
+}
+
+#sortCourses {
+    margin-top: 1rem;
+}
+
+
+button {
+    cursor: pointer;
+    border: none;
+    background: #0b4189;
+    color: white;
+    border-radius: 4px;
+
+    &:hover {
+        background: #1a5fc1;
+    }
+}
+
+
+#courseList {
+    margin-top: 1.5rem;
+    padding: 0;
+    list-style: none;
+    font-size: large;
+
+    a {
+        color: #0b4189;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+    }
+}
+
+#courseList li {
+    background: white;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border-left: 10px solid #0b4189;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+#courseList button {
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    background: #dc3545;
+
+    &:hover {
+        background: #b02a37;
+    }
+}
+
+
+#clearCoursesBtn {
+    margin: 2rem 1rem;
+    background: #8f0e28;
+
+    &:hover {
+        background: #545b62;
+    }
+}
