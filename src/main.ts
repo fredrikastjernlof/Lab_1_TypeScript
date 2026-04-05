@@ -63,6 +63,7 @@ form.addEventListener("submit", (e) => {
   courses.push(newCourse);
   saveCoursesToStorage();
   renderCourses();
+  resetForm();
 
 });
 
@@ -94,6 +95,11 @@ function fillFormWithCourse(code: string): void {
   nameInput.value = selectedCourse.name;
   progressionSelect.value = selectedCourse.progression;
   syllabusInput.value = selectedCourse.syllabus;
+}
+
+function resetForm(): void {
+  form.reset();
+  courseSelect.value = "";
 }
 
 function renderCourses(): void {
