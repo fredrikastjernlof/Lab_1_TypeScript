@@ -125,12 +125,14 @@ function removeCourse(code: string): void {
 
   if (index !== -1) {
     courses.splice(index, 1);
+    saveCoursesToStorage();
     renderCourses();
   }
 }
 
 function clearCourses(): void {
   courses.length = 0;
+  saveCoursesToStorage();
   renderCourses();
 }
 
