@@ -138,4 +138,17 @@ function saveCoursesToStorage(): void {
   localStorage.setItem(storageKey, JSON.stringify(courses));
 }
 
+function loadCoursesFromStorage(): void {
+  const storedCourses = localStorage.getItem(storageKey);
+
+  if (!storedCourses) {
+    return;
+  }
+
+  const parsedCourses: CourseInfo[] = JSON.parse(storedCourses);
+  courses.push(...parsedCourses);
+}
+
 populateCourseSelect();
+loadCoursesFromStorage();
+renderCourses();
