@@ -40,6 +40,7 @@ const nameInput = document.getElementById("name") as HTMLInputElement;
 const progressionSelect = document.getElementById("progression") as HTMLSelectElement;
 const syllabusInput = document.getElementById("syllabus") as HTMLInputElement;
 const courseList = document.getElementById("courseList") as HTMLUListElement;
+const clearCoursesBtn = document.getElementById("clearCoursesBtn") as HTMLButtonElement;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -68,6 +69,10 @@ form.addEventListener("submit", (e) => {
 
 courseSelect.addEventListener("change", () => {
   fillFormWithCourse(courseSelect.value);
+});
+
+clearCoursesBtn.addEventListener("click", () => {
+  clearCourses();
 });
 
 function populateCourseSelect(): void {
@@ -123,6 +128,11 @@ function removeCourse(code: string): void {
     courses.splice(index, 1);
     renderCourses();
   }
+}
+
+function clearCourses(): void {
+  courses.length = 0;
+  renderCourses();
 }
 
 populateCourseSelect();
