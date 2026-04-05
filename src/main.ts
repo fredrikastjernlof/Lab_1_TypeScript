@@ -163,7 +163,7 @@ function renderCourses(): void {
     li.innerHTML = `
       <strong>${course.code}</strong> - ${course.name} (${course.progression})
       <br>
-      <a href="${course.syllabus}" target="_blank">Kursplan</a>
+      <a href="${course.syllabus}" target="_blank">Visa kursplan för ${course.name}</a>
     `;
 
     li.appendChild(deleteBtn);

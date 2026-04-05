@@ -8,44 +8,47 @@
 </head>
 
 <body>
-  <form id="courseForm">
-    <label for="courseSelect">Välj kurs från lista (valfritt)</label>
-    <select id="courseSelect">
-      <option value="">Välj en kurs</option>
+  <a href="#courseForm" class="skip-link">Hoppa till formulär</a>
+  <main>
+    <h1>Kurshantering</h1>
+    <form id="courseForm">
+      <label for="courseSelect">Välj kurs från lista (valfritt)</label>
+      <select id="courseSelect">
+        <option value="">Välj en kurs</option>
+      </select>
+
+      <label for="code">Kurskod:</label>
+      <input type="text" id="code" placeholder="Kurskod" required>
+      <label for="name">Kursnamn:</label>
+      <input type="text" id="name" placeholder="Kursnamn" required>
+
+      <label for="progression">Progression</label>
+      <select id="progression" required>
+        <option value="">Välj progression</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+
+      <label for="syllabus">Länk till kursbeskrivning:</label>
+      <input type="url" id="syllabus" placeholder="Kurs URL" required>
+
+      <button type="submit">Lägg till kurs</button>
+    </form>
+
+
+    <label for="sortCourses">Sortera kurser</label>
+    <select id="sortCourses">
+      <option value="default">Standard</option>
+      <option value="name-asc">Namn A-Ö</option>
+      <option value="name-desc">Namn Ö-A</option>
     </select>
+    <h2>Tillagda kurser</h2>
 
-    <label for="code">Kurskod:</label>
-    <input type="text" id="code" placeholder="Kurskod" required />
-    <label for="name">Kursnamn:</label>
-    <input type="text" id="name" placeholder="Kursnamn" required />
+    <ul id="courseList"></ul>
+    <button id="clearCoursesBtn" type="button">Ta bort alla</button>
 
-    <label for="progression">Progression</label>
-    <select id="progression" required>
-      <option value="">Välj progression</option>
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-    </select>
-
-    <label for="syllabus">Länk till kursbeskrivning:</label>
-    <input type="url" id="syllabus" placeholder="Kurs URL" required />
-
-    <button type="submit">Lägg till kurs</button>
-  </form>
-
-
- 
-  <h2>Tillagda kurser</h2>
-   <label for="sortCourses">Sortera kurser</label>
-  <select id="sortCourses">
-    <option value="default">Standard</option>
-    <option value="name-asc">Namn A-Ö</option>
-    <option value="name-desc">Namn Ö-A</option>
-  </select>
-  <ul id="courseList"></ul>
-  <button id="clearCoursesBtn" type="button">Ta bort alla</button>
-
-
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
